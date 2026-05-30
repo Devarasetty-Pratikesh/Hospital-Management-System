@@ -183,7 +183,7 @@ const BillingSystem = () => {
                             <tr key={b.bill_id} className="hover:bg-gray-50 transition-colors">
                                 <td className="table-cell font-medium">#{b.bill_id}</td>
                                 <td className="table-cell">{b.patient_name}</td>
-                                <td className="table-cell">{new Date(activeTab === 'inpatient' ? b.admission_date : b.bill_date).toLocaleString()}</td>
+                                <td className="table-cell">{new Date(activeTab === 'inpatient' ? b.admission_date : b.bill_date).toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })}</td>
                                 <td className="table-cell text-right font-bold text-lg text-emerald-600">₹{parseFloat(b.total).toFixed(2)}</td>
                                 <td className="table-cell text-center">
                                     {b.status === 'Paid' ? (

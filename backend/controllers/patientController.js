@@ -9,7 +9,7 @@ exports.addPatient = async (req, res) => {
         if (today.getMonth() < birthDate.getMonth() || (today.getMonth() === birthDate.getMonth() && today.getDate() < birthDate.getDate())) {
             age--;
         }
-        const admission_date = new Date().toISOString().split('T')[0];
+        const admission_date = new Date().toLocaleDateString('en-CA', { timeZone: 'Asia/Kolkata' });
         
         const [result] = await pool.query(
             'INSERT INTO Patient (patient_name, gender, age, dob, mobile, admission_date, registered_by_staff) VALUES (?, ?, ?, ?, ?, ?, ?)',

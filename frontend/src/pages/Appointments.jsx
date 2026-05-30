@@ -88,7 +88,7 @@ const Appointments = () => {
                     <tbody className="bg-white/50 divide-y divide-gray-100">
                         {appointments.map(a => (
                             <tr key={a.appointment_id} className="hover:bg-gray-50 transition-colors">
-                                <td className="table-cell">{new Date(a.appointment_date).toLocaleString()}</td>
+                                <td className="table-cell">{new Date(a.appointment_date).toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })}</td>
                                 <td className="table-cell font-medium">{a.patient_name}</td>
                                 <td className="table-cell">Dr. {a.doctor_name} <br/><span className="text-xs text-gray-500">{a.specialization}</span></td>
                                 <td className="table-cell font-bold text-gray-800">₹{parseFloat(a.fee).toFixed(2)}</td>

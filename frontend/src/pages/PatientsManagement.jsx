@@ -101,7 +101,7 @@ const PatientsManagement = () => {
                                         {p.gender}
                                     </span>
                                 </td>
-                                <td className="table-cell">{new Date(p.dob).toLocaleDateString()}</td>
+                                <td className="table-cell">{new Date(p.dob).toLocaleDateString('en-IN', { timeZone: 'Asia/Kolkata' })}</td>
                                 <td className="table-cell">{p.mobile}</td>
                                 <td className="table-cell text-right space-x-3">
                                     <button onClick={() => handleEdit(p)} className="text-secondary hover:text-blue-700 transition-colors"><Edit size={18}/></button>

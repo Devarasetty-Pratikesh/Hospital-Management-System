@@ -24,7 +24,7 @@ exports.admitPatient = async (req, res) => {
             return res.status(400).json({ message: 'Room is already occupied' });
         }
 
-        const admission_date = new Date().toISOString().split('T')[0];
+        const admission_date = new Date().toLocaleDateString('en-CA', { timeZone: 'Asia/Kolkata' });
         const [result] = await pool.query(
             'INSERT INTO In_Patient (patient_id, room_id, admission_date) VALUES (?, ?, ?)',
             [patient_id, room_id, admission_date]
@@ -39,7 +39,7 @@ exports.dischargePatient = async (req, res) => {
     const { admission_id } = req.params;
     try {
         // Set discharge_date to free the room but keep the record for billing history
-        const discharge_date = new Date().toISOString().split('T')[0];
+        const discharge_date = new Date().toLocaleDateString('en-CA', { timeZone: 'Asia/Kolkata' });
         await pool.query('UPDATE In_Patient SET discharge_date = ? WHERE admission_id = ?', [discharge_date, admission_id]);
         res.json({ message: 'Patient discharged successfully' });
     } catch (error) {
