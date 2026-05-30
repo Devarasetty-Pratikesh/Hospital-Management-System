@@ -74,6 +74,7 @@ CREATE TABLE IF NOT EXISTS In_Patient_Bill (
     bill_id INT AUTO_INCREMENT PRIMARY KEY,
     admission_id INT NOT NULL,
     total DECIMAL(10, 2) NOT NULL CHECK (total >= 0),
+    status VARCHAR(20) DEFAULT 'Unpaid',
     FOREIGN KEY (admission_id) REFERENCES In_Patient(admission_id) ON DELETE CASCADE
 );
 
@@ -98,6 +99,32 @@ CREATE TABLE IF NOT EXISTS Out_Patient_Medical (
     quantity INT NOT NULL CHECK (quantity > 0),
     FOREIGN KEY (patient_id) REFERENCES Out_Patient(patient_id) ON DELETE CASCADE,
     FOREIGN KEY (medicine_id) REFERENCES Medicine(medicine_id) ON DELETE CASCADE
+);
+
+-- 12. Out_Patient_Bill Table
+CREATE TABLE IF NOT EXISTS Out_Patient_Bill (
+    bill_id INT AUTO_INCREMENT PRIMARY KEY,
+    patient_id INT NOT NULL,
+    total DECIMAL(10, 2) NOT NULL,
+    status VARCHAR(20) DEFAULT 'Unpaid',
+    bill_date DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (patient_id) REFERENCES Patient(patient_id) ON DELETE CASCADE
+);
+
+-- 13. Appointment Table
+CREATE TABLE IF NOT EXISTS Appointment (
+    appointment_id INT AUTO_INCREMENT PRIMARY KEY,
+    patient_id INT NOT NULL,
+    doctor_id INT NOT NULL,
+    fee DECIMAL(10,2) NOT NULL,
+    is_billed BOOLEAN DEFAULT FALSE,
+    ip_bill_id INT NULL,
+    op_bill_id INT NULL,
+    appointment_date DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (patient_id) REFERENCES Patient(patient_id) ON DELETE CASCADE,
+    FOREIGN KEY (doctor_id) REFERENCES Doctor(doctor_id) ON DELETE CASCADE,
+    FOREIGN KEY (ip_bill_id) REFERENCES In_Patient_Bill(bill_id) ON DELETE SET NULL,
+    FOREIGN KEY (op_bill_id) REFERENCES Out_Patient_Bill(bill_id) ON DELETE SET NULL
 );
 
 -- Initial seed data
