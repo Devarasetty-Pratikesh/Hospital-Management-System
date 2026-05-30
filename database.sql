@@ -29,9 +29,10 @@ CREATE TABLE IF NOT EXISTS Cashier (
 -- 4. Doctor Table
 CREATE TABLE IF NOT EXISTS Doctor (
     doctor_id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(100) NOT NULL,
+    doctor_name VARCHAR(100) NOT NULL,
     specialization VARCHAR(100) NOT NULL,
     mobile VARCHAR(15) NOT NULL,
+    consultation_fee DECIMAL(10, 2) NOT NULL DEFAULT 500.00,
     appointed_by_admin INT,
     registered_by_staff INT,
     FOREIGN KEY (appointed_by_admin) REFERENCES Admin(user_id) ON DELETE SET NULL,
