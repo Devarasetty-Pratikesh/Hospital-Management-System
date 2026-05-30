@@ -101,5 +101,6 @@ CREATE TABLE IF NOT EXISTS Out_Patient_Medical (
 
 -- Initial seed data
 INSERT IGNORE INTO Admin (username, password) VALUES ('admin', '$2a$10$x.X/k8eS2oD/V9v2394xUON3n7P.0xH268M61LwVjX4p6fQ/e1aGW'); -- password: password123
+INSERT IGNORE INTO Staff (staff_id, fname, lname, username, designation, mobile) VALUES (1, 'Ravi', 'Kumar', 'ravi', 'Nurse', '9001');
 INSERT IGNORE INTO Room (room_no, room_cost) VALUES ('101', 500.00), ('102', 600.00), ('103', 750.00), ('104', 1000.00);
 INSERT IGNORE INTO Medicine (medicine_name, price) VALUES ('Paracetamol', 10.00), ('Amoxicillin', 50.00), ('Ibuprofen', 20.00), ('Cetirizine', 15.00);
