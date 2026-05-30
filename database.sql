@@ -41,8 +41,9 @@ CREATE TABLE IF NOT EXISTS Doctor (
 -- 5. Patient Table
 CREATE TABLE IF NOT EXISTS Patient (
     patient_id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(100) NOT NULL,
+    patient_name VARCHAR(100) NOT NULL,
     gender ENUM('Male', 'Female', 'Other') NOT NULL,
+    age INT,
     dob DATE NOT NULL,
     admission_date DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     mobile VARCHAR(15) NOT NULL,
