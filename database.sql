@@ -64,7 +64,8 @@ CREATE TABLE IF NOT EXISTS In_Patient (
     admission_id INT AUTO_INCREMENT PRIMARY KEY,
     patient_id INT NOT NULL,
     room_id INT,
-    ip_date DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    admission_date DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    discharge_date DATE DEFAULT NULL,
     FOREIGN KEY (patient_id) REFERENCES Patient(patient_id) ON DELETE CASCADE,
     FOREIGN KEY (room_id) REFERENCES Room(room_id) ON DELETE SET NULL
 );
@@ -81,6 +82,9 @@ CREATE TABLE IF NOT EXISTS In_Patient_Bill (
 -- 9. Out_Patient Table
 CREATE TABLE IF NOT EXISTS Out_Patient (
     patient_id INT PRIMARY KEY,
+    patient_name VARCHAR(100) NOT NULL,
+    mobile VARCHAR(15) NOT NULL,
+    doctor_name VARCHAR(100) DEFAULT 'Assigned',
     FOREIGN KEY (patient_id) REFERENCES Patient(patient_id) ON DELETE CASCADE
 );
 
