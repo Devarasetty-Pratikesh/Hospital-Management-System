@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-    baseURL: 'http://localhost:3000/api',
+    baseURL: 'https://hospital-management-system-backend-zeta.vercel.app/api',
 });
 
 // Optionally add interceptors here for JWT
